@@ -22,14 +22,20 @@
 // each time you are dont die, you gain +1 score
 
 import java.sql.SQLOutput;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
 
+    public int charhealth = character.getHealth();
     public static int score = 0;
-    public static Character character;
     public static boolean monsterEncounter = false;
-
+    public static Character character;
+    public static Goblin goblin;
+    public static Octolin octolin;
+    public static Living_Toxic living_toxic;
+    public static King_Goblin king_goblin;
+    public static ArrayList < String > Inventory = new ArrayList < > ();
     //Main Method
     public static void main(String[] args) {
         //Instructions
@@ -37,32 +43,30 @@ public class Main {
         System.out.println(" ");
         stats();
     }
-//    public static String monstertype() {
-//        if ()
-//
-//
-//
-//
-//
-//    }
+    public static String monstertype() {
+        int encounternum = (int)((Math.random() * 3) + 1);
+        if (encounternum == 1) {
+            return "Living Toxic";
+        } else if (encounternum == 2) {
+            return "Octolin";
+        } else if (encounternum == 3) {
+            return "King Goblin";
+        } else {
+            return "Goblin";
+        }
 
-
-
-
+    }
 
     public static int level() {
         int level = 1;
 
         if (score == 10) {
-             level = 2;
-        }
-        else if (score == 20) {
+            level = 2;
+        } else if (score == 20) {
             level = 3;
-        }
-        else if (score == 30) {
+        } else if (score == 30) {
             level = 4;
-        }
-        else if (score == 40) {
+        } else if (score == 40) {
             level = 5;
         }
         return level;
@@ -98,57 +102,63 @@ public class Main {
             }
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 
-    public static void fightScene() {
+    public void fightScene() {
         if (monsterEncounter) {
+            boolean playerturn = false;
+            boolean monsterturn = false;
 
-            System.out.println("You encountered a" + monstertype + );
+            System.out.println("You encountered a" + monstertype());
+
+            if (monstertype().equals("Goblin")) {
+                if (character.getHealth() > goblin.getHealth()) {
+                    playerturn = true;
+
+                } else if (character.getHealth() < goblin.getHealth()) {
+                    monsterturn = true;
+                    if (monsterturn) {
+                        int damage;
+                        if (character.getStrength() >= character.getEndurance()) {
+                            damage = goblin.getStrength() * 2 - character.getEndurance();
+                        } else {
+                            damage = goblin.getStrength() * goblin.getStrength() / character.getEndurance();
+                        }
+                        charhealth -= damage;
+                        character.setHealth(charhealth);
+                    }
+
+                }
+
+
+
+
+            }
+        }
+    }
+    public int dmgcal(String Monster) {
+        int damage = 0;
+        if (Monster.equals("Goblin"))
+            if (character.getStrength() >= character.getEndurance()) {
+                damage = goblin.getStrength() * 2 - character.getEndurance();
+            } else {
+                damage = goblin.getStrength() * goblin.getStrength() / character.getEndurance();
+            }
+        if (Monster.equals("Octolin")) {
+            if (character.getStrength() >= character.getEndurance()) {
+                damage = Octolin.getStrength() * 2 - character.getEndurance();
+            } else {
+                damage = Octolin.getStrength() * Octolin.getStrength() / character.getEndurance();
+            }
 
 
         }
 
 
+
+        charhealth -= damage;
+        character.setHealth(charhealth);
+
+        return charhealth;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

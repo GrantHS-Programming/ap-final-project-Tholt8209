@@ -1,4 +1,4 @@
-public class Goblin {
+public class King_Goblin {
 
     public int health = (int) ((Math.random() * 3) + 3);
     public int strength = (int) ((Math.random() * 3 ) + 3);
@@ -6,11 +6,11 @@ public class Goblin {
     public int intelligence = 2;
     public int amplifier = Main.level();
 
-    public Goblin(int health, int strength, int endurance, int intelligence, int amplifier) {
-         health *= amplifier;
-         strength *= amplifier;
-         endurance *= amplifier;
-         intelligence *= amplifier;
+    public King_Goblin(int health, int strength, int endurance, int intelligence, int amplifier) {
+        health *= amplifier;
+        strength *= amplifier;
+        endurance *= amplifier;
+        intelligence *= amplifier;
 
     }
 
@@ -26,13 +26,5 @@ public class Goblin {
     public int getIntelligence() {
         return intelligence;
     }
-
-
-
-
-
-
-
-
 
 }

@@ -14,13 +14,27 @@ public class Character {
         intelligence = intelligenceStat;
     }
 
-    public void setName(String newName) {
-        this.name = newName;
-    }
+    public void setHealth(int newHealth) {this.health = newHealth;}
 
     public String toString() {
         return ("Character: " + name + "\n" + "Health: " + health + " \n" + "Endurance: " + endurance + "\n" + "Strength: " + strength + "\n"
                 + "Intelligence: " + intelligence);
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public int getEndurance() {
+        return endurance;
+    }
+
+    public int getStrength() {
+        return strength;
+    }
+
+    public int getIntelligence() {
+        return intelligence;
     }
 
     public boolean isDead() {
@@ -30,4 +44,6 @@ public class Character {
             return false;
         }
     }
+
+
 }
