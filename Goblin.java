@@ -6,14 +6,13 @@ public class Goblin {
     public int intelligence = 2;
     public int amplifier = Main.level();
 
-    public Goblin(int health, int strength, int endurance, int intelligence, int amplifier) {
-         health *= amplifier;
-         strength *= amplifier;
-         endurance *= amplifier;
-         intelligence *= amplifier;
+    public Goblin() {
+        health = ((int)((Math.random() * 3) + 2)) * amplifier;
+        strength = ((int)((Math.random() * 3) + 2)) * amplifier;
+        endurance = ((int)((Math.random() * 3) + 2)) * amplifier;
+        intelligence = 2 * amplifier;
 
     }
-
     public int getHealth() {
         return health;
     }
@@ -27,7 +26,13 @@ public class Goblin {
         return intelligence;
     }
 
-
+    public boolean isDead() {
+        if (health == 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 
 

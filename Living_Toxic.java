@@ -1,30 +1,41 @@
 public class Living_Toxic {
 
-    public int health = (int) ((Math.random() * 3) + 3);
-    public int strength = (int) ((Math.random() * 3 ) + 3);
-    public int endurance = (int) ((Math.random() * 2) + 3);
-    public int intelligence = 2;
+    public int health;
+    public int strength;
+    public int endurance;
+    public int intelligence;
     public int amplifier = Main.level();
 
-    public Living_Toxic(int health, int strength, int endurance, int intelligence, int amplifier) {
-        health *= amplifier;
-        strength *= amplifier;
-        endurance *= amplifier;
-        intelligence *= amplifier;
+    public Living_Toxic() {
+        health = 1;
+        strength = ((int) ((Math.random() * 2) + 1)) * amplifier;
+        endurance = ((int) ((Math.random() * 2) + 1)) * amplifier;
+        intelligence = amplifier;
 
     }
 
     public int getHealth() {
         return health;
     }
+
     public int getStrength() {
         return strength;
     }
+
     public int getEndurance() {
         return endurance;
     }
+
     public int getIntelligence() {
         return intelligence;
     }
 
+
+    public boolean isDead() {
+        if (health == 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
