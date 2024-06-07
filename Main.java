@@ -12,15 +12,15 @@ public class Main {
     public static Character character;
     public int charhealth = character.getHealth();
     public String userInput;
-    
+
     //Monster Type
     public static Goblin goblin;
     public Octolin octolin;
     public static Living_Toxic living_toxic;
     public static King_Goblin king_goblin;
     //arrays
-    public static ArrayList < String > Inventory = new ArrayList < > ();
-    public static ArrayList < Main > Enemies = new ArrayList < Main > ();
+    public static ArrayList<String> Inventory = new ArrayList<>();
+    public static ArrayList<Main> Enemies = new ArrayList<Main>();
 
     //Main Method
     public static void main(String[] args) {
@@ -30,8 +30,9 @@ public class Main {
         stats();
 
     }
+
     public static String monstertype() {
-        int encounternum = (int)((Math.random() * 3) + 1);
+        int encounternum = (int) ((Math.random() * 3) + 1);
         if (encounternum == 1) {
             return "Living Toxic";
         } else if (encounternum == 2 && level() == 1) {
@@ -184,61 +185,57 @@ public class Main {
     }
 
     public static void room() {
+        Room firstRoom = new Room("firstRoom", 0, 0);
+        Room room1 = new Room("room1", 0, 1);
+        Room room2 = new Room("room2", 0, 2); 
+        Room room3 = new Room("room3", 0, 3); 
+        Room room4 = new Room("room4", 0, 4);
+        Room room5 = new Room("room5", 0, 5);
 
-        Room firstRoom = new Room("You wake up in a dense forest, sunlight filtering through the canopy above. " + "\n" +
-                "Surrounded by towering trees and chirping birds, you sense an adventure waiting to unfold. Which Direction do plan on going? ");
+        Room room1l = new Room("room1l", -1, 1);
+        Room room2l = new Room("room2l", -2, 1);
+        Room room3l = new Room("room3l", -3, 1); 
+        Room room4l = new Room("room4l", -4, 1);
 
-        Room room1 = new Room("You turn left. Looking forward, you spot a mysterious pathway leading deeper into the forest. " +
-                "On your right, a bubbling stream winds its way through the trees, while on your left, the underbrush thickens, " +
-                "concealing whatever secrets lie beyond.");
-        Room room2 = new Room("You stumble upon an overgrown ruin, its weathered stones hinting at a forgotten past. " +
-                "Intrigued, you venture closer, drawn by the allure of uncovering its secrets. You pick up a sword lying in bushes." );
+        Room room1r = new Room("room1r", 1, 1);
+        Room room2r = new Room("room2r", 2, 1);
+        Room room3r = new Room("room3r", 3, 1);
+        Room room4r = new Room("room4r", 4, 1);
 
-        Room room3 = new Room("You enter the ruin, its darkened halls echoing with whispers of forgotten stories. " +
-                "The air is heavy with the scent of decay, yet the allure of uncovering what lies within drives you deeper into its depths.");
+        Room room1R2Y = new Room("room1R2Y", 1, 2);
+        Room room1R3Y = new Room("room1R3Y", 1, 3);
+        Room room1R4Y = new Room("room1R4Y", 1, 4);
+        Room room2R2Y = new Room("room2R2Y", 2, 2);
+        Room room2R3Y = new Room("room2R3Y", 2, 3);
+        Room room2R4Y = new Room("room2R4Y", 2, 4);
+        Room room3R2Y = new Room("room3R2Y", 3, 2);
+        Room room3R3Y = new Room("room3R3Y", 3, 3);
+        Room room3R4Y = new Room("room3R4Y", 3, 4);
+        Room room4R2Y = new Room("room4R2Y", 4, 2);
+        Room room4R3Y = new Room("room4R3Y", 4, 3);
+        Room room4R4Y = new Room("room4R4Y", 4, 4);
 
+        Room roomN1R2Y = new Room("roomN1R2Y", -1, 2);
+        Room roomN1R3Y = new Room("roomN1R3Y", -1, 3);
+        Room roomN1R4Y = new Room("roomN1R4Y", -1, 4);
+        Room roomN2R2Y = new Room("roomN2R2Y", -2, 2);
+        Room roomN2R3Y = new Room("roomN2R3Y", -2, 3);
+        Room roomN2R4Y = new Room("roomN2R4Y", -2, 4);
+        Room roomN3R2Y = new Room("roomN3R2Y", -3, 2);
+        Room roomN3R3Y = new Room("roomN3R3Y", -3, 3);
+        Room roomN3R4Y = new Room("roomN3R4Y", -3, 4);
+        Room roomN4R2Y = new Room("roomN4R2Y", -4, 2);
+        Room roomN4R3Y = new Room("roomN4R3Y", -4, 3);
+        Room roomN4R4Y = new Room("roomN4R4Y", -4, 4);
 
-        Room room4 = new Room("You stumble upon a dimly lit room, its walls adorned with ancient symbols. " +
-                "In the center, a pedestal holds a pulsating artifact. As you draw near, a shadowy figure springs from the darkness, its eyes glinting with malice.");
-                //Encounter Monster
-        
-        Room room5 = new Room("hi");
-        Room room6 = new Room("hi");
-        Room room7 = new Room("hi");
-        Room room8 = new Room("hi");
-
-        Room room1l = new Room("hi");
-        Room room2l= new Room("hi");
-        Room room3l = new Room("hi");
-        Room room4l = new Room("hi");
-        Room room5l = new Room("hi");
-        Room room6l = new Room("hi");
-        Room room7l = new Room("hi");
-        Room room8l = new Room("hi");
-
-        Room room1r = new Room("hi");
-        Room room2r = new Room("hi");
-        Room room3r = new Room("hi");
-        Room room4r = new Room("hi");
-        Room room5r = new Room("hi");
-        Room room6r = new Room("hi");
-        Room room7r = new Room("hi");
-        Room room8r = new Room("hi");
-        
         Room currentRoom = firstRoom;
-
         int choices = currentRoom.getChoiceNum();
         Scanner myObj = new Scanner(System.in); // scanner
 
-        while (choices > 0) { // loop ( When the choices option is equal to 0, It stops)
-
-            System.out.println(currentRoom.getText()); // ( prints page text. )
+        while (choices > 0) {
+            System.out.println(currentRoom.getText()); // prints page text
             System.out.println("Which Direction? "); // gets input of the choice
-            String userInput = myObj.nextLine(); //  1,2
-
-            if (character.isDead()) {
-                choices = 0;
-            }
+            String userInput = myObj.nextLine(); // reads user input
 
             if (userInput.equals("w")) {
                 if (currentRoom == firstRoom) {
@@ -251,17 +248,8 @@ public class Main {
                     currentRoom = room4;
                 } else if (currentRoom == room4) {
                     currentRoom = room5;
-                } else if (currentRoom == room5) {
-                    currentRoom = room6;
-                } else if (currentRoom == room6) {
-                    currentRoom = room7;
-                } else if (currentRoom == room7) {
-                    currentRoom = room8;
                 }
-
-            }
-
-            else if (currentRoom.equals("a")) {
+            } else if (userInput.equals("a")) {
                 if (currentRoom == firstRoom) {
                     currentRoom = room1l;
                 } else if (currentRoom == room1l) {
@@ -270,18 +258,8 @@ public class Main {
                     currentRoom = room3l;
                 } else if (currentRoom == room3l) {
                     currentRoom = room4l;
-                } else if (currentRoom == room4l) {
-                    currentRoom = room5l;
-                } else if (currentRoom == room5l) {
-                    currentRoom = room6l;
-                } else if (currentRoom == room6l) {
-                    currentRoom = room7l;
-                } else if (currentRoom == room7l) {
-                    currentRoom = room8l;
                 }
-
-            }
-            else if (currentRoom.equals("d")) {
+            } else if (userInput.equals("d")) {
                 if (currentRoom == firstRoom) {
                     currentRoom = room1r;
                 } else if (currentRoom == room1r) {
@@ -290,31 +268,16 @@ public class Main {
                     currentRoom = room3r;
                 } else if (currentRoom == room3r) {
                     currentRoom = room4r;
-                } else if (currentRoom == room4r) {
-                    currentRoom = room5r;
-                } else if (currentRoom == room5r) {
-                    currentRoom = room6r;
-                } else if (currentRoom == room6r) {
-                    currentRoom = room7r;
-                } else if (currentRoom == room7r) {
-                    currentRoom = room8r;
                 }
-
-            }
-            else if (currentRoom.equals("s")) {
-
-
-
-            }
-            else {
+            } else if (userInput.equals("s")) {
+                // Handle south direction if needed
+            } else {
                 System.out.println("Not a valid choice.");
             }
         }
     }
-
-
-
 }
+
 // text
 
 // which direction
