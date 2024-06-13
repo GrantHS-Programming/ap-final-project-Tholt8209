@@ -1,5 +1,6 @@
-
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Main {
@@ -11,7 +12,10 @@ public class Main {
     public static boolean playerTurn = false;
     public static Character character;
     public int charhealth = character.getHealth();
+    public static int x = 0;
+    public static int y = 0;
     public String userInput;
+
 
     //Monster Type
     public static Goblin goblin;
@@ -19,20 +23,20 @@ public class Main {
     public static Living_Toxic living_toxic;
     public static King_Goblin king_goblin;
     //arrays
-    public static ArrayList<String> Inventory = new ArrayList<>();
-    public static ArrayList<Main> Enemies = new ArrayList<Main>();
+    public static ArrayList < String > Inventory = new ArrayList < > ();
+    public static ArrayList < Main > Enemies = new ArrayList < Main > ();
 
     //Main Method
     public static void main(String[] args) {
         //Instructions
         System.out.println("Enter a to go left, enter s to go right, enter w to go forward, enter s to go back. ");
         System.out.println(" ");
-        stats();
-
+        //stats();
+        room();
     }
 
     public static String monstertype() {
-        int encounternum = (int) ((Math.random() * 3) + 1);
+        int encounternum = (int)((Math.random() * 3) + 1);
         if (encounternum == 1) {
             return "Living Toxic";
         } else if (encounternum == 2 && level() == 1) {
@@ -180,110 +184,164 @@ public class Main {
         }
     }
 
-    public void runGame() {
-        fightScene();
+    public static void runGame() {
+        room();
     }
 
-    public static void room() {
-        Room firstRoom = new Room("firstRoom", 0, 0);
-        Room room1 = new Room("room1", 0, 1);
-        Room room2 = new Room("room2", 0, 2); 
-        Room room3 = new Room("room3", 0, 3); 
-        Room room4 = new Room("room4", 0, 4);
-        Room room5 = new Room("room5", 0, 5);
+        public static void room() {
 
-        Room room1l = new Room("room1l", -1, 1);
-        Room room2l = new Room("room2l", -2, 1);
-        Room room3l = new Room("room3l", -3, 1); 
-        Room room4l = new Room("room4l", -4, 1);
 
-        Room room1r = new Room("room1r", 1, 1);
-        Room room2r = new Room("room2r", 2, 1);
-        Room room3r = new Room("room3r", 3, 1);
-        Room room4r = new Room("room4r", 4, 1);
 
-        Room room1R2Y = new Room("room1R2Y", 1, 2);
-        Room room1R3Y = new Room("room1R3Y", 1, 3);
-        Room room1R4Y = new Room("room1R4Y", 1, 4);
-        Room room2R2Y = new Room("room2R2Y", 2, 2);
-        Room room2R3Y = new Room("room2R3Y", 2, 3);
-        Room room2R4Y = new Room("room2R4Y", 2, 4);
-        Room room3R2Y = new Room("room3R2Y", 3, 2);
-        Room room3R3Y = new Room("room3R3Y", 3, 3);
-        Room room3R4Y = new Room("room3R4Y", 3, 4);
-        Room room4R2Y = new Room("room4R2Y", 4, 2);
-        Room room4R3Y = new Room("room4R3Y", 4, 3);
-        Room room4R4Y = new Room("room4R4Y", 4, 4);
+            Room firstRoom = new Room("firstRoom", 0, 0);
+            Room room1 = new Room("room1 ", 0, 1);
+            Room room2 = new Room("room2", 0, 2);
+            Room room3 = new Room("room3", 0, 3);
+            Room room4 = new Room("room4", 0, 4);
+            Room room5 = new Room("room5", 0, 5);
 
-        Room roomN1R2Y = new Room("roomN1R2Y", -1, 2);
-        Room roomN1R3Y = new Room("roomN1R3Y", -1, 3);
-        Room roomN1R4Y = new Room("roomN1R4Y", -1, 4);
-        Room roomN2R2Y = new Room("roomN2R2Y", -2, 2);
-        Room roomN2R3Y = new Room("roomN2R3Y", -2, 3);
-        Room roomN2R4Y = new Room("roomN2R4Y", -2, 4);
-        Room roomN3R2Y = new Room("roomN3R2Y", -3, 2);
-        Room roomN3R3Y = new Room("roomN3R3Y", -3, 3);
-        Room roomN3R4Y = new Room("roomN3R4Y", -3, 4);
-        Room roomN4R2Y = new Room("roomN4R2Y", -4, 2);
-        Room roomN4R3Y = new Room("roomN4R3Y", -4, 3);
-        Room roomN4R4Y = new Room("roomN4R4Y", -4, 4);
+            Room room1l = new Room("room1l", -1, 1);
+            Room room2l = new Room("room2l", -2, 1);
+            Room room3l = new Room("room3l", -3, 1);
+            Room room4l = new Room("room4l", -4, 1);
 
-        Room currentRoom = firstRoom;
-        int choices = currentRoom.getChoiceNum();
-        Scanner myObj = new Scanner(System.in); // scanner
+            Room room1r = new Room("room1r", 1, 1);
+            Room room2r = new Room("room2r", 2, 1);
+            Room room3r = new Room("room3r", 3, 1);
+            Room room4r = new Room("room4r", 4, 1);
 
-        while (choices > 0) {
-            System.out.println(currentRoom.getText()); // prints page text
-            System.out.println("Which Direction? "); // gets input of the choice
-            String userInput = myObj.nextLine(); // reads user input
+            Room room1R2Y = new Room("room1R2Y", 1, 2);
+            Room room1R3Y = new Room("room1R3Y", 1, 3);
+            Room room1R4Y = new Room("room1R4Y", 1, 4);
+            Room room2R2Y = new Room("room2R2Y", 2, 2);
+            Room room2R3Y = new Room("room2R3Y", 2, 3);
+            Room room2R4Y = new Room("room2R4Y", 2, 4);
+            Room room3R2Y = new Room("room3R2Y", 3, 2);
+            Room room3R3Y = new Room("room3R3Y", 3, 3);
+            Room room3R4Y = new Room("room3R4Y", 3, 4);
+            Room room4R2Y = new Room("room4R2Y", 4, 2);
+            Room room4R3Y = new Room("room4R3Y", 4, 3);
+            Room room4R4Y = new Room("room4R4Y", 4, 4);
 
-            if (userInput.equals("w")) {
-                if (currentRoom == firstRoom) {
+            Room roomN1R2Y = new Room("roomN1R2Y", -1, 2);
+            Room roomN1R3Y = new Room("roomN1R3Y", -1, 3);
+            Room roomN1R4Y = new Room("roomN1R4Y", -1, 4);
+            Room roomN2R2Y = new Room("roomN2R2Y", -2, 2);
+            Room roomN2R3Y = new Room("roomN2R3Y", -2, 3);
+            Room roomN2R4Y = new Room("roomN2R4Y", -2, 4);
+            Room roomN3R2Y = new Room("roomN3R2Y", -3, 2);
+            Room roomN3R3Y = new Room("roomN3R3Y", -3, 3);
+            Room roomN3R4Y = new Room("roomN3R4Y", -3, 4);
+            Room roomN4R2Y = new Room("roomN4R2Y", -4, 2);
+            Room roomN4R3Y = new Room("roomN4R3Y", -4, 3);
+            Room roomN4R4Y = new Room("roomN4R4Y", -4, 4);
+
+            Room currentRoom = firstRoom;
+            int choices = currentRoom.getChoiceNum();
+            Scanner myObj = new Scanner(System.in); // scanner
+
+            while (character.isDead()) {
+                System.out.println(currentRoom.getText()); // prints page text
+                System.out.println("Which Direction? "); // gets input of the choice
+                String direction = myObj.nextLine(); // reads user input
+
+                if (direction.equals("w")) {
+                    y += 1;
+                } else if (direction.equals("d")) {
+                    x += 1;
+                } else if (direction.equals("a")) {
+                    x -= 1;
+                } else if (direction.equals("s") && !(currentRoom == firstRoom)) {
+                    y -= 1;
+                }
+                if ((x == 0) && (y == 1)) {
                     currentRoom = room1;
-                } else if (currentRoom == room1) {
+                }if ((x == 0) && (y == 2)) {
                     currentRoom = room2;
-                } else if (currentRoom == room2) {
+                }if ((x == 0) && (y == 3)) {
                     currentRoom = room3;
-                } else if (currentRoom == room3) {
+                }if ((x == 0) && (y == 4)) {
                     currentRoom = room4;
-                } else if (currentRoom == room4) {
+                }if ((x == 0) && (y == 5)) {
                     currentRoom = room5;
-                }
-            } else if (userInput.equals("a")) {
-                if (currentRoom == firstRoom) {
+
+                }if ((x == -1) && (y == 1)) {
                     currentRoom = room1l;
-                } else if (currentRoom == room1l) {
+                }if ((x == -2) && (y == 1)) {
                     currentRoom = room2l;
-                } else if (currentRoom == room2l) {
+                }if ((x == -3) && (y == 1)) {
                     currentRoom = room3l;
-                } else if (currentRoom == room3l) {
-                    currentRoom = room4l;
+                }if ((x == -3) && (y == 1)) {
+                currentRoom = room4l;
                 }
-            } else if (userInput.equals("d")) {
-                if (currentRoom == firstRoom) {
+
+                if ((x == 1) && (y == 1)) {
                     currentRoom = room1r;
-                } else if (currentRoom == room1r) {
+                } else if ((x == 2) && (y == 1)) {
                     currentRoom = room2r;
-                } else if (currentRoom == room2r) {
+                } else if ((x == 3) && (y == 1)) {
                     currentRoom = room3r;
-                } else if (currentRoom == room3r) {
+                } else if ((x == 4) && (y == 1)) {
                     currentRoom = room4r;
                 }
-            } else if (userInput.equals("s")) {
-                // Handle south direction if needed
-            } else {
-                System.out.println("Not a valid choice.");
+
+                if ((x == 1) && (y == 2)) {
+                    currentRoom = room1R2Y;
+                } else if ((x == 1) && (y == 3)) {
+                    currentRoom = room1R3Y;
+                } else if ((x == 1) && (y == 4)) {
+                    currentRoom = room1R4Y;
+                } else if ((x == 2) && (y == 2)) {
+                    currentRoom = room2R2Y;
+                } else if ((x == 2) && (y == 3)) {
+                    currentRoom = room2R3Y;
+                } else if ((x == 2) && (y == 4)) {
+                    currentRoom = room2R4Y;
+                } else if ((x == 3) && (y == 2)) {
+                    currentRoom = room3R2Y;
+                } else if ((x == 3) && (y == 3)) {
+                    currentRoom = room3R3Y;
+                } else if ((x == 3) && (y == 4)) {
+                    currentRoom = room3R4Y;
+                } else if ((x == 4) && (y == 2)) {
+                    currentRoom = room4R2Y;
+                } else if ((x == 4) && (y == 3)) {
+                    currentRoom = room4R3Y;
+                } else if ((x == 4) && (y == 4)) {
+                    currentRoom = room4R4Y;
+
+                }
+
+                if ((x == -1) && (y == 2)) {
+                    currentRoom = roomN1R2Y;
+                } else if ((x == -1) && (y == 3)) {
+                    currentRoom = roomN1R3Y;
+                } else if ((x == -1) && (y == 4)) {
+                    currentRoom = roomN1R4Y;
+                } else if ((x == -2) && (y == 2)) {
+                    currentRoom = roomN2R2Y;
+                } else if ((x == -2) && (y == 3)) {
+                    currentRoom = roomN2R3Y;
+                } else if ((x == -2) && (y == 4)) {
+                    currentRoom = roomN2R4Y;
+                } else if ((x == -3) && (y == 2)) {
+                    currentRoom = roomN3R2Y;
+                } else if ((x == -3) && (y == 3)) {
+                    currentRoom = roomN3R3Y;
+                } else if ((x == -3) && (y == 4)) {
+                    currentRoom = roomN3R4Y;
+                } else if ((x == -4) && (y == 2)) {
+                    currentRoom = roomN4R2Y;
+                } else if ((x == -4) && (y == 3)) {
+                    currentRoom = roomN4R3Y;
+                } else if ((x == -4) && (y == 4)) {
+                    currentRoom = roomN4R4Y;
+                }
+
+
+
+                System.out.println("X value: " + x + "\n" + "Y Value: " + y);
+
             }
-        }
+
     }
 }
-
-// text
-
-// which direction
-// Where to go?
-
-
-
-
-
